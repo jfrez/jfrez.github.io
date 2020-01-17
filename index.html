@@ -1,0 +1,67 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script>
+function addPlot (symbol,data) { 
+       g = document.createElement('div');
+     g.setAttribute("id", symbol);
+    g.style.width = "600px";
+    g.style.height = "300px";
+    g.style.cssFloat = "left";
+    var dates = [];
+    var vals = [];
+    for(var i in data.dates){
+        dates.push(i);
+        vals.push(data.dates[i]);
+    }
+
+    document.body.appendChild(g);
+        var myChart = echarts.init(g);
+
+        var option = {
+            title: {
+                text: symbol
+            },
+            tooltip: {},
+            legend: {
+                data:['Close']
+            },
+            xAxis: {
+                data: dates
+            },
+            yAxis: {
+            
+                min:Math.min.apply(null,vals),
+                max:Math.max.apply(null,vals)
+            },
+
+            series: [{
+                type: 'line',
+                data: vals
+            }]
+        };
+
+        myChart.setOption(option);
+}
+function getJson(){
+    $.ajax({
+        method:"get",
+        dataType:"json",
+        url:"https://gist.githubusercontent.com/jfrez/a80235190b760619455a40090b8947b3/raw/pred.json",
+        success:function(data){
+        for(var d in data){
+            addPlot(d,data[d]);
+        }
+        }
+
+    })
+
+
+}
+$(function(){
+getJson();
+
+});
+</script>
