@@ -11,12 +11,18 @@ function addPlot (symbol,data) {
     g.style.height = "300px";
     g.style.cssFloat = "left";
     var dates = [];
+    var realdates = [];
+    var real = [];
     var vals = [];
     var maxwin = Math.round(data.maxwin,2);
-    var tendency = Math.round(data.tendency,2);
+    var tendency = data.tendency.toFixed(2);
     for(var i in data.dates){
         dates.push(i);
         vals.push(data.dates[i]);
+    }
+    for(var i in data.real){
+        realdates.push(i);
+        real.push(data.real[i]);
     }
 
     document.body.appendChild(g);
@@ -39,10 +45,15 @@ function addPlot (symbol,data) {
                 max:Math.max.apply(null,vals)
             },
 
-            series: [{
+            series: [
+                {
                 type: 'line',
                 data: vals
+            }, {
+                type: 'line',
+                data: real
             },
+
              {
             name: 'Max Win',
             type: 'gauge',
@@ -192,7 +203,7 @@ function addPlot (symbol,data) {
                     color: '#000'
                 }
             },
-            data: [{value: tendency, name: 'tendency'}]
+            data: [{value: tendency, name: '%'}]
         }
 
             
