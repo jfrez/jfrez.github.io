@@ -49,7 +49,7 @@ function getJson(){
     $.ajax({
         method:"get",
         dataType:"json",
-        url:"https://gist.githubusercontent.com/jfrez/a80235190b760619455a40090b8947b3/raw/pred.json",
+        url:"https://raw.githubusercontent.com/jfrez/jfrez.github.io/master/pred.json",
         success:function(data){
         for(var d in data){
             addPlot(d,data[d]);
