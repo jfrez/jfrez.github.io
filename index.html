@@ -7,24 +7,26 @@
 function addPlot (symbol,data) { 
        g = document.createElement('div');
      g.setAttribute("id", symbol);
-    g.style.width = "600px";
-    g.style.height = "300px";
+    g.style.width = "100%";
+    g.style.height = "500px";
     g.style.cssFloat = "left";
     var dates = [];
     var realdates = [];
     var real = [];
     var vals = [];
     var maxwin = Math.round(data.maxwin,2);
-    var tendency = data.tendency.toFixed(2);
+    for(var i in data.real){
+        dates.push(i);
+        real.push(data.real[i]);
+        vals.push({});
+    }
+    vals.pop();
+var tendency = data.tendency.toFixed(2);
     for(var i in data.dates){
         dates.push(i);
         vals.push(data.dates[i]);
     }
-    for(var i in data.real){
-        realdates.push(i);
-        real.push(data.real[i]);
-    }
-
+    
     document.body.appendChild(g);
         var myChart = echarts.init(g);
 
@@ -44,13 +46,18 @@ function addPlot (symbol,data) {
                 min:Math.min.apply(null,vals),
                 max:Math.max.apply(null,vals)
             },
-
+grid: {top: '40%',   containLabel: true},
+            legend: {
+        data: ['Real', 'Pred T0']
+    },
             series: [
                 {
+                name: 'Pred T0',
                 type: 'line',
-                data: vals
+                data: vals,
             }, {
                 type: 'line',
+                name: 'Real',
                 data: real
             },
 
@@ -61,7 +68,7 @@ function addPlot (symbol,data) {
             min: 0,
             max: 30,
             splitNumber: 11,
-            center: ['50%', '25%'],    // 默认全局居中
+            center: ['20%', '25%'],    // 默认全局居中
             radius: '30%',
             axisLine: {            // 坐标轴线
                 lineStyle: {       // 属性lineStyle控制线条样式
@@ -129,7 +136,7 @@ function addPlot (symbol,data) {
         {
             name: '转速',
             type: 'gauge',
-            center: ['75%', '25%'],    // 默认全局居中
+            center: ['40%', '25%'],    // 默认全局居中
             radius: '30%',
             min: -10,
             max: 10,
