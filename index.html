@@ -13,18 +13,18 @@ function addPlot (symbol,data) {
     var dates = [];
     var realdates = [];
     var real = [];
-    var vals = [];
+    var t0 = [];
     var maxwin = Math.round(data.maxwin,2);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
-        vals.push({});
+        t0.push({});
     }
-    vals.pop();
+    t0.pop();
 var tendency = data.tendency.toFixed(2);
-    for(var i in data.dates){
+    for(var i in data.t0){
         dates.push(i);
-        vals.push(data.dates[i]);
+        t0.push(data.t0[i]);
     }
     
     document.body.appendChild(g);
@@ -43,8 +43,8 @@ var tendency = data.tendency.toFixed(2);
             },
             yAxis: {
             
-                min:Math.min.apply(null,vals),
-                max:Math.max.apply(null,vals)
+                min:Math.min.apply(null,t0),
+                max:Math.max.apply(null,t0)
             },
 grid: {top: '40%',   containLabel: true},
             legend: {
@@ -54,7 +54,7 @@ grid: {top: '40%',   containLabel: true},
                 {
                 name: 'Pred T0',
                 type: 'line',
-                data: vals,
+                data: t0,
             }, {
                 type: 'line',
                 name: 'Real',
