@@ -7,8 +7,9 @@
 function addPlot (symbol,data) { 
        g = document.createElement('div');
      g.setAttribute("id", symbol);
-    g.style.width = "100%";
+    g.style.width = "80%";
     g.style.height = "500px";
+    g.style.margin = "10%";
     g.style.cssFloat = "left";
     var dates = [];
     var realdates = [];
@@ -54,23 +55,42 @@ var tendency = data.tendency.toFixed(2);
             yAxis: {
                         type: 'value',
                 min:Math.min.apply(null,t0),
-                max:Math.max.apply(null,t0)
+                max:Math.max.apply(null,t0),
+                axisLabel: {
+            formatter: '{value} usd'
+        },
+                scale: true,
+                 minorTick: {
+            show: true
+        },
+        splitLine: {
+            lineStyle: {
+                color: '#999'
+            }
+        },
+        minorSplitLine: {
+            show: true,
+            lineStyle: {
+                color: '#ddd'
+            }
+        }
             },
 grid: {top: '40%',   containLabel: true},
             legend: {
         data: ['Real', 'Pred T0','Pred T-1','Pred T-2','Pred T-3','Pred T-4','Pred T-5']
     },
             series: [
-                {name: 'Pred T0',type: 'line',data: t0 },
-                {name: 'Pred T-1',type: 'line',data: t1 },
-                {name: 'Pred T-2',type: 'line',data: t2 },
-                {name: 'Pred T-3',type: 'line',data: t3 },
-                {name: 'Pred T-4',type: 'line',data: t4 },
-                {name: 'Pred T-5',type: 'line',data: t5 },
+                {name: 'Pred T0',type: 'line',data: t0 ,lineStyle: {opacity: 1 }},
+                {name: 'Pred T-1',type: 'line',data: t1 ,lineStyle: {opacity: 0.5 }},
+                {name: 'Pred T-2',type: 'line',data: t2 ,lineStyle: {opacity: 0.4 }},
+                {name: 'Pred T-3',type: 'line',data: t3 ,lineStyle: {opacity: 0.3 }},
+                {name: 'Pred T-4',type: 'line',data: t4 ,lineStyle: {opacity: 0.2 }},
+                {name: 'Pred T-5',type: 'line',data: t5 ,lineStyle: {opacity: 0.1 }},
                 {
                 type: 'line',
                 name: 'Real',
-                data: real
+                data: real,
+                lineStyle: {width: 3 }
             },
 
              {
