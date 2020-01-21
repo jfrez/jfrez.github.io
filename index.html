@@ -14,18 +14,28 @@ function addPlot (symbol,data) {
     var realdates = [];
     var real = [];
     var t0 = [];
+    var t1 = [];
+    var t2 = [];
+    var t3 = [];
+    var t4 = [];
+    var t5 = [];
     var maxwin = Math.round(data.maxwin,2);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
-        t0.push({});
+        t0.push({}); t1.push({});        t2.push({});        t3.push({});        t4.push({});        t5.push({});
     }
-    t0.pop();
+t0.pop();t1.pop();t1.pop();t2.pop();t2.pop();t2.pop();t3.pop();t3.pop();t3.pop();t3.pop();t4.pop();t4.pop();t4.pop();t4.pop();t4.pop();t5.pop();t5.pop();t5.pop();t5.pop();t5.pop();
 var tendency = data.tendency.toFixed(2);
     for(var i in data.t0){
         dates.push(i);
         t0.push(data.t0[i]);
     }
+    for(var i in data.t1)t1.push(data.t1[i]);
+    for(var i in data.t2)t3.push(data.t2[i]);
+    for(var i in data.t3)t4.push(data.t3[i]);
+    for(var i in data.t4)t5.push(data.t4[i]);
+    for(var i in data.t5)t6.push(data.t5[i]);
     
     document.body.appendChild(g);
         var myChart = echarts.init(g);
@@ -48,14 +58,16 @@ var tendency = data.tendency.toFixed(2);
             },
 grid: {top: '40%',   containLabel: true},
             legend: {
-        data: ['Real', 'Pred T0']
+        data: ['Real', 'Pred T0','Pred T-1','Pred T-2','Pred T-3','Pred T-4','Pred T-5']
     },
             series: [
+                {name: 'Pred T0',type: 'line',data: t0 },
+                {name: 'Pred T-1',type: 'line',data: t1 },
+                {name: 'Pred T-2',type: 'line',data: t2 },
+                {name: 'Pred T-3',type: 'line',data: t3 },
+                {name: 'Pred T-4',type: 'line',data: t4 },
+                {name: 'Pred T-5',type: 'line',data: t5 },
                 {
-                name: 'Pred T0',
-                type: 'line',
-                data: t0,
-            }, {
                 type: 'line',
                 name: 'Real',
                 data: real
