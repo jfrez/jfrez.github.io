@@ -20,7 +20,7 @@ function addPlot (symbol,data) {
     var t3 = [];
     var t4 = [];
     var t5 = [];
-    var maxwin = Math.round(data.maxwin,2);
+    var maxwin =(100*data.maxwin/(data.real[Object.keys(data.real).slice(-1)[0]])).toFixed(2);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
@@ -100,7 +100,7 @@ grid: {top: '40%',   containLabel: true},
             },
 
              {
-            name: 'Max Win',
+            name: 'Max Win %',
             type: 'gauge',
                     opacity: 0.2,
             min: 0,
@@ -169,7 +169,7 @@ grid: {top: '40%',   containLabel: true},
                     color: '#000'
                 }
             },
-            data: [{value: maxwin, name: 'Max win'}]
+            data: [{value: maxwin, name: 'Max win %'}]
         }
        
             
