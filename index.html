@@ -24,7 +24,7 @@ function addPlot (symbol,data) {
     console.log(data.stddev);
     var perf =0;
     if( data.stddev > 0)
-        perf=(20*(4-Math.log(1+data.stddev))).toFixed(2);
+        perf=(100*(4-Math.log(1+data.stddev))/4).toFixed(2);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
