@@ -24,7 +24,7 @@ function addPlot (symbol,data) {
     console.log(data.stddev);
     var perf =0;
     if( data.stddev > 0)
-        perf=100*(1-data.stddev).toFixed(2);
+        perf=100*(1-data.stddev).toFixed(0);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
@@ -270,7 +270,7 @@ for (key in data) { data[key].symbol = key;
   array.push(data[key]);
 }
             array.sort(function (a, b) {
-                 return a.stddev - b.stddev;
+                 return b.stddev - a.stddev;
             });
         for(var d in array){
             addPlot(array[d].symbol,array[d]);
