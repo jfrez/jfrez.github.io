@@ -26,10 +26,12 @@ function addPlot (symbol,data) {
         real.push(data.real[i]);
         t0.push({}); t1.push({});        t2.push({});        t3.push({});        t4.push({});        t5.push({});
     }
-real.pop();t0.pop();t1.pop();t1.pop();t2.pop();t2.pop();t2.pop();t3.pop();t3.pop();t3.pop();t3.pop();t4.pop();t4.pop();t4.pop();t4.pop();t4.pop();t5.pop();t5.pop();t5.pop();t5.pop();t5.pop();
+t0.pop();t1.pop();t1.pop();t2.pop();t2.pop();t2.pop();t3.pop();t3.pop();t3.pop();t3.pop();t4.pop();t4.pop();t4.pop();t4.pop();t4.pop();t5.pop();t5.pop();t5.pop();t5.pop();t5.pop();
 var tendency = data.tendency.toFixed(2);
+    count =0;
     for(var i in data.t0){
-        dates.push(i);
+        if(count >0)dates.push(i);
+        count++
         t0.push(data.t0[i]);
     }
     for(var i in data.t1)t1.push(data.t1[i]);
