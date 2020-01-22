@@ -22,7 +22,6 @@ function addPlot (symbol,data) {
     var t5 = [];
     var maxwin =(100*data.maxwin/(data.real[Object.keys(data.real).slice(-1)[0]])).toFixed(2);
     var perf =(100-10*(2+Math.log(data.stddev,2))).toFixed(2);
-    console.log(data);
     for(var i in data.real){
         dates.push(i);
         real.push(data.real[i]);
@@ -263,8 +262,15 @@ function getJson(){
         dataType:"json",
         url:"https://raw.githubusercontent.com/jfrez/jfrez.github.io/master/pred.json",
         success:function(data){
-        for(var d in data){
-            addPlot(d,data[d]);
+var array = [];
+for (key in data) { data[key].symbol = key;
+  array.push(data[key]);
+}
+            array.sort(function (a, b) {
+                 return a.stddev - b.stddev;
+            });
+        for(var d in array){
+            addPlot(array[d].symbol,array[d]);
         }
         }
 
