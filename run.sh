@@ -6,5 +6,3 @@ python3 ../Predictor/getPred.py > pred.json
 git add .
 git commit -m "."
 git push
-SLEEP 1000
-source ./run.sh
