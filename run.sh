@@ -4,3 +4,4 @@ python3 ../Predictor/getPred.py > pred.json
 git add .
 git commit -m "."
 git push
+sleep 43200
