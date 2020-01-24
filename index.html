@@ -20,8 +20,6 @@ function addPlot (symbol,data) {
     var t3 = [];
     var t4 = [];
     var t5 = [];
-    var maxwin =(100*data.maxwin/(data.real[Object.keys(data.real).slice(-1)[0]])).toFixed(2);
-    console.log(data.stddev);
     var perf =0;
     if( data.stddev > 0)
         perf=(100*(4-Math.log(1+data.stddev))/4).toFixed(2);
@@ -31,7 +29,6 @@ function addPlot (symbol,data) {
         t0.push({}); t1.push({});        t2.push({});        t3.push({});        t4.push({});        t5.push({});
     }
 t0.pop();t1.pop();t2.pop();t2.pop();t3.pop();t3.pop();t4.pop();t4.pop();t4.pop();t5.pop();t5.pop();t5.pop();t5.pop();t5.pop();
-var tendency = data.tendency.toFixed(2);
     count =0;
     for(var i in data.t0){
         if(count >0)dates.push(i);
@@ -104,157 +101,7 @@ grid: {top: '40%',   containLabel: true},
                 name: 'Real',
                 data: real,
                 lineStyle: {width: 3 }
-            },
-
-             {
-            name: 'Performance',
-            type: 'gauge',
-                    opacity: 0.2,
-            min: 0,
-            max: 100,
-            splitNumber: 11,
-            center: ['50%', '25%'],    // 默认全局居中
-            radius: '30%',
-            axisLine: {            // 坐标轴线
-                lineStyle: {       // 属性lineStyle控制线条样式
-                    color: [[0.09, 'lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
-                    width: 3,
-                    opacity: 0.2,
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            axisLabel: {            // 坐标轴小标记
-                fontWeight: 'bolder',
-                    opacity: 0.2,
-                color: '#fff',
-                shadowColor: '#fff', //默认透明
-                shadowBlur: 10
-            },
-            axisTick: {            // 坐标轴小标记
-                length: 15,        // 属性length控制线长
-                lineStyle: {       // 属性lineStyle控制线条样式
-                    opacity: 0.2,
-                    color: 'auto',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            splitLine: {           // 分隔线
-                length: 25,         // 属性length控制线长
-                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
-                    width: 3,
-                    opacity: 0.2,
-                    color: '#fff',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            pointer: {           // 分隔线
-                shadowColor: '#fff', //默认透明
-                shadowBlur: 5
-            },
-            title: {
-                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                    fontWeight: 'bolder',
-                    fontSize: 20,
-                    opacity: 0.2,
-                    fontStyle: 'italic',
-                    color: '#000',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            detail: {
-                    opacity: 0.2,
-                shadowColor: '#000', //默认透明
-                shadowBlur: 5,
-                offsetCenter: [0, '50%'],       // x, y，单位px
-                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                    fontWeight: 'bolder',
-                    opacity: 0.2,
-                    color: '#000'
-                }
-            },
-            data: [{value: perf, name: 'Prediction Acc %'}]
-        },
-       
-
-                
-                {
-            name: 'Max Win %',
-            type: 'gauge',
-                    opacity: 0.2,
-            min: 0,
-            max: 30,
-            splitNumber: 11,
-            center: ['20%', '25%'],    // 默认全局居中
-            radius: '30%',
-            axisLine: {            // 坐标轴线
-                lineStyle: {       // 属性lineStyle控制线条样式
-                    color: [[0.09, 'lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
-                    width: 3,
-                    opacity: 0.2,
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            axisLabel: {            // 坐标轴小标记
-                fontWeight: 'bolder',
-                    opacity: 0.2,
-                color: '#fff',
-                shadowColor: '#fff', //默认透明
-                shadowBlur: 10
-            },
-            axisTick: {            // 坐标轴小标记
-                length: 15,        // 属性length控制线长
-                lineStyle: {       // 属性lineStyle控制线条样式
-                    opacity: 0.2,
-                    color: 'auto',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            splitLine: {           // 分隔线
-                length: 25,         // 属性length控制线长
-                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
-                    width: 3,
-                    opacity: 0.2,
-                    color: '#fff',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            pointer: {           // 分隔线
-                shadowColor: '#fff', //默认透明
-                shadowBlur: 5
-            },
-            title: {
-                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                    fontWeight: 'bolder',
-                    fontSize: 20,
-                    opacity: 0.2,
-                    fontStyle: 'italic',
-                    color: '#000',
-                    shadowColor: '#fff', //默认透明
-                    shadowBlur: 10
-                }
-            },
-            detail: {
-                    opacity: 0.2,
-                shadowColor: '#000', //默认透明
-                shadowBlur: 5,
-                offsetCenter: [0, '50%'],       // x, y，单位px
-                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                    fontWeight: 'bolder',
-                    opacity: 0.2,
-                    color: '#000'
-                }
-            },
-            data: [{value: maxwin, name: 'Max win %'}]
-        }
-       
-            
+            }
             ]
         };
 
